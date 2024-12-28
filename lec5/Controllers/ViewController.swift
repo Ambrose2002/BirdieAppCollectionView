@@ -90,3 +90,9 @@ extension ViewController: UICollectionViewDataSource {
 }
 
 // MARK: - UICollectionViewDelegateFlowLayout
+extension ViewController: UICollectionViewDelegateFlowLayout {
+    func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAt indexPath: IndexPath) -> CGSize {
+        let size = collectionView.frame.width / 2 - 16
+        return CGSize(width: size, height: size)
+    }
+}
