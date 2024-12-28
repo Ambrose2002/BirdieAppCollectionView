@@ -49,12 +49,44 @@ class ViewController: UIViewController {
         layout.minimumInteritemSpacing = 16
         
         collectionView = UICollectionView(frame: .zero, collectionViewLayout: layout)
+        collectionView.register(BirdCollectionViewCell.self, forCellWithReuseIdentifier: BirdCollectionViewCell.reuse)
+        collectionView.delegate = self
+        collectionView.dataSource = self
+        
+        view.addSubview(collectionView)
+        collectionView.translatesAutoresizingMaskIntoConstraints = false
+        
+        NSLayoutConstraint.activate([
+            collectionView.leadingAnchor.constraint(equalTo: view.leadingAnchor),
+            collectionView.trailingAnchor.constraint(equalTo: view.trailingAnchor),
+            collectionView.topAnchor.constraint(equalTo: view.safeAreaLayoutGuide.topAnchor),
+            collectionView.bottomAnchor.constraint(equalTo: view.safeAreaLayoutGuide.bottomAnchor)
+        ])
     }
 
 }
 
 // MARK: - UICollectionView Delegate
+extension ViewController: UICollectionViewDelegate {
+    
+}
 
 // MARK: - UICollectionView DataSource
+extension ViewController: UICollectionViewDataSource {
+    func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
+        return birds.count
+    }
+    
+    func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
+        guard let cell = collectionView.dequeueReusableCell(withReuseIdentifier: BirdCollectionViewCell.reuse, for: indexPath) as? BirdCollectionViewCell
+        else {
+            return UICollectionViewCell()
+        }
+        
+        cell.configure(bird: birds[indexPath.row])
+        return cell
+    }
+    
+}
 
 // MARK: - UICollectionViewDelegateFlowLayout
