@@ -11,6 +11,8 @@ class ViewController: UIViewController {
 
     // MARK: - Properties (view)
     
+    var collectionView: UICollectionView!
+    
     // MARK: - Properties (data)
     
     private var birds: [Bird] = [
@@ -34,9 +36,20 @@ class ViewController: UIViewController {
         
         title = "Birds"
         view.backgroundColor = UIColor.white
+        
+        setUpCollectionView()
     }
     
     // MARK: - Set Up Views
+    private func setUpCollectionView() {
+        // Create the flow layout
+        let layout = UICollectionViewFlowLayout()
+        layout.scrollDirection = .vertical
+        layout.minimumLineSpacing = 16
+        layout.minimumInteritemSpacing = 16
+        
+        collectionView = UICollectionView(frame: .zero, collectionViewLayout: layout)
+    }
 
 }
 
