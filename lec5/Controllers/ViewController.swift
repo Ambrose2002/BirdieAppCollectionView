@@ -68,7 +68,21 @@ class ViewController: UIViewController {
 
 // MARK: - UICollectionView Delegate
 extension ViewController: UICollectionViewDelegate {
-    
+    func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
+        let bird = birds[indexPath.row]
+        var favorites = UserDefaults.standard.array(forKey: "favorites") as? [String] ?? []
+        
+        if favorites.contains(bird.name) {
+            let name = bird.name
+            favorites.removeAll { name in
+                name == bird.name
+            }
+        } else {
+            favorites.append(bird.name)
+        }
+        
+        UserDefaults.standard.setValue(favorites, forKey: "favorites")
+    }
 }
 
 // MARK: - UICollectionView DataSource
