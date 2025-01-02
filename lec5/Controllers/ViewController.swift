@@ -46,7 +46,7 @@ class ViewController: UIViewController {
         let layout = UICollectionViewFlowLayout()
         layout.scrollDirection = .vertical
         layout.minimumLineSpacing = 16
-        layout.minimumInteritemSpacing = 16
+        layout.minimumInteritemSpacing = 12
         
         collectionView = UICollectionView(frame: .zero, collectionViewLayout: layout)
         collectionView.register(BirdCollectionViewCell.self, forCellWithReuseIdentifier: BirdCollectionViewCell.reuse)
@@ -73,7 +73,6 @@ extension ViewController: UICollectionViewDelegate {
         var favorites = UserDefaults.standard.array(forKey: "favorites") as? [String] ?? []
         
         if favorites.contains(bird.name) {
-            let name = bird.name
             favorites.removeAll { name in
                 name == bird.name
             }

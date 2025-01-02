@@ -39,6 +39,14 @@ class BirdCollectionViewCell: UICollectionViewCell {
         // Don't make private!
         birdImage.image = UIImage(named: bird.image)
         birdNameLabel.text = bird.name
+        
+        let favorites = UserDefaults.standard.array(forKey: "favorites") as? [String] ?? []
+        
+        if favorites.contains(bird.name) {
+            starIcon.image = UIImage(systemName: "star.fill")
+        } else {
+            starIcon.image = UIImage(systemName: "star")
+        }
     }
     
     // MARK: - Set Up Views
@@ -78,7 +86,7 @@ class BirdCollectionViewCell: UICollectionViewCell {
 
         NSLayoutConstraint.activate([
             starIcon.topAnchor.constraint(equalTo: contentView.topAnchor),
-            starIcon.trailingAnchor.constraint(equalTo: contentView.trailingAnchor),
+            starIcon.trailingAnchor.constraint(equalTo: contentView.trailingAnchor, constant: -10),
             starIcon.widthAnchor.constraint(equalToConstant: 24),
             starIcon.heightAnchor.constraint(equalToConstant: 24)
         ])
