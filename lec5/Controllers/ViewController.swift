@@ -82,6 +82,7 @@ extension ViewController: UICollectionViewDelegate {
         }
         
         UserDefaults.standard.setValue(favorites, forKey: "favorites")
+        collectionView.reloadData()
     }
 }
 
