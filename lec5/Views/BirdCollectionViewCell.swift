@@ -14,6 +14,7 @@ class BirdCollectionViewCell: UICollectionViewCell {
     
     private let birdImage = UIImageView()
     private let birdNameLabel = UILabel()
+    private let starIcon = UIImageView()
     
     static let reuse = "BirdCollectionViewCellReuse"
     
@@ -25,6 +26,7 @@ class BirdCollectionViewCell: UICollectionViewCell {
         
         setupBirdImage()
         setupNameLabel()
+        setupStarIcon()
     }
     
     required init?(coder: NSCoder) {
@@ -67,6 +69,18 @@ class BirdCollectionViewCell: UICollectionViewCell {
         NSLayoutConstraint.activate([
             birdNameLabel.centerXAnchor.constraint(equalTo: contentView.centerXAnchor),
             birdNameLabel.topAnchor.constraint(equalTo: birdImage.bottomAnchor, constant: 4)
+        ])
+    }
+    
+    private func setupStarIcon() {
+        contentView.addSubview(starIcon)
+        starIcon.translatesAutoresizingMaskIntoConstraints = false
+
+        NSLayoutConstraint.activate([
+            starIcon.topAnchor.constraint(equalTo: contentView.topAnchor),
+            starIcon.trailingAnchor.constraint(equalTo: contentView.trailingAnchor),
+            starIcon.widthAnchor.constraint(equalToConstant: 24),
+            starIcon.heightAnchor.constraint(equalToConstant: 24)
         ])
     }
     
